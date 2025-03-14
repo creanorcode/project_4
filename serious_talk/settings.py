@@ -64,3 +64,6 @@ DATABASES = {
         'PORT': env('DB_PORT', default='5432',)
     }
 }
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
