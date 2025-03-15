@@ -27,3 +27,18 @@ class Post(models.Model):
 
     def vote_score(self):
         return self.upvotes - self.downvotes
+
+# Comment model representing discussions on posts
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    upvotes = models.IntegerField(default=0)
+    downvotes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"Comment by {self.author.username} on {self.post.title}"
+    
+    def vote_score(self):
+        return self.upvotes - self.downvotes
