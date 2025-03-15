@@ -31,8 +31,10 @@ class PostForm(forms.ModelForm):
         Here we add help texts to guide the user.
         """
         super().__init__(*args, **kwargs)
-        self.fields['title'].help_text = "Title should be at least 5 characters long."
-        self.fields['content'].help_text = "Content should be at least 20 characters long."
+        self.fields['title'].help_text = "Title should be at \
+        least 5 characters long."
+        self.fields['content'].help_text = "Content should be \
+        at least 20 characters long."
 
     def clean_title(self):
         """
@@ -40,22 +42,27 @@ class PostForm(forms.ModelForm):
         """
         title = self.cleaned_data.get('title')
         if len(title) < 5:
-            raise forms.ValidationError("The title must be at least 5 characters long.")
+            raise forms.ValidationError("The title must \
+            be at least 5 characters long.")
         return title
 
     def clean_content(self):
         """
-        Validate that the content is at least 20 characters long and does not contain forbidden words.
+        Validate that the content is at least 20
+        characters long and does not contain forbidden words.
         """
         content = self.cleaned_data.get('content')
         if len(content) < 20:
-            raise forms.ValidationError("The content must be at least 20 characters long.")
+            raise forms.ValidationError("The content \
+            must be at least 20 characters long.")
         # Example check: Disallow certain forbidden words
         forbidden_words = ['forbidden', 'banned']
         for word in forbidden_words:
             if word in content.lower():
-                raise forms.ValidationError(f"The content contains a forbidden word: '{word}'.")
+                raise forms.ValidationError(f"The content \
+                contains a forbidden word: '{word}'.")
         return content
+
 
 class CommentForm(forms.ModelForm):
     """
@@ -73,19 +80,21 @@ class CommentForm(forms.ModelForm):
                 'placeholder': 'Write your comment here'
             }),
         }
-    
+
     def __init__(self, *args, **kwargs):
         """
         Add help text to the comment field.
         """
         super().__init__(*args, **kwargs)
-        self.fields['content'].help_text = "Please ensure your comment is meaningful and at least 5 characters long."
-    
+        self.fields['content'].help_text = "Please ensure your \
+        comment is meaningful and at least 5 characters long."
+
     def clean_content(self):
         """
         Validate that the comment is at least 5 characters long.
         """
         content = self.cleaned_data.get('content')
         if len(content) < 5:
-            raise forms.ValidationError("The comment must be at least 5 characters long.")
+            raise forms.ValidationError("The comment \
+            must be at least 5 characters long.")
         return content
