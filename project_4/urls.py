@@ -4,7 +4,8 @@ from posts.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')), # Inloggning, utloggning etc.
+    # Inloggning, utloggning etc.
+    path('accounts/', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
     path('', include('posts.urls')),
 ]
