@@ -24,3 +24,9 @@ class CustomUserAdmin(UserAdmin):
             updated = queryset.update(is_active=True)
             self.message_user(request, f"{updated} users have been unlocked.")
         unlock_users.short_description = "Unlock selected user accounts."
+
+# Unregister the default UserAdmin
+admin.site.unregister(User)
+
+# Register the custom UserAdmin so that our actions take effect
+admin.site.register(User, CustomUserAdmin)
