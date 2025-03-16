@@ -158,3 +158,40 @@ def user_profile(request, username):
     user_profile = get_object_or_404(User, username=username)
     user_posts = Post.objects.filter(author=user_profile).order_by('-created_at')
     return render(request, 'posts/user_profile.html', {'user_profile': user_profile, 'user_posts': user_posts})
+
+# Optional: Class-based views for updating a post uding mixins
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import UpdateView
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'posts/post_form.html'
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author or self.request.user.is_staff
+
+# Custom admin views for user management (outside of Django admin)
+@user_passes_test(lambda u: u.is_staff)
+def manage_users(request):
+    from django.contrib.auth.models import User
+    users = User.objects.all().order_by('username')
+    return render(request, 'posts/manage_users.html', {'users': users})
+
+@user_passes_test(lambda u: u.is_staff)
+def lock_user(request, user_id):
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=user_id)
+    user.is_active = False
+    user.save()
+    messages.success(request, f"User {user.username} has been locked.")
+    return redirect('manage_users')
+
+@user_passes_test(lambda u: u.is_staff)
+def delete_user(request, user_id):
+    from django.contrib.auth.models import User
+    user = User.objects.get(id=user_id)
+    user.delete()
+    messages.success(request, f"User {user.username} has been deleted.")
+    return redirect('manage_users')
