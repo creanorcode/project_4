@@ -138,3 +138,23 @@ def api_post_update(request, pk):
         form.save()
         return JsonResponse({'message': 'Post updated', 'vote_score': post.vote_score()})
     return JsonResponse(form.errors, status=400)
+
+# View for user registration using Django´s UserCreationForm
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('post_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+# View for displaying a user´s profile and their posts
+@login_required
+def user_profile(request, username):
+    from django.contrib.auth.models import User
+    user_profile = get_object_or_404(User, username=username)
+    user_posts = Post.objects.filter(author=user_profile).order_by('-created_at')
+    return render(request, 'posts/user_profile.html', {'user_profile': user_profile, 'user_posts': user_posts})
