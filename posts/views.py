@@ -76,3 +76,34 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'posts/post_confirm_delete.html', {'post': post})
+
+# View for updating a comment
+@login_required
+def comment_update(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    # Only allow the comment´s author or staff to update it
+    if request.user != comment.author and not request.user.is_staff:
+        return render(request, 'posts/error.html', {'message': 'You are not authorized to edit this comment.'})
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=comment.post.pk)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'posts/comment_form.html', {'form': form, 'comment': comment})
+
+# View for deleting a comment
+@login_required
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    # Only allow the comment´s author or staff to delete it
+    if request.user != comment.author and not request.user.is_staff:
+        return render(request, 'posts/error.html', {'message': 'You are not authorized to delete this comment.'})
+    
+    if request.method == "POST":
+        post_pk = comment.post.pk
+        comment.delete()
+        return redirect('post_detail', pk=post_pk)
+    return render(request, 'posts/comment_confirm_delete.html', {'comment': comment})
