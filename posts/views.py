@@ -33,3 +33,46 @@ def post_detail(request, pk):
     else:
         form = CommentForm()
     return render(request, 'posts/post_detail.html', {'post': post, 'comments': comments, 'form': form})
+
+# View for creating a new post
+@login_required
+def post_create(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'posts/post_form.html', {'form': form})
+
+# View for updating an existing post
+@login_required
+def post_update(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    # Ensure only the post author or staff can update the post
+    if request.user != post.author and not request.user.is_staff:
+        return render(request, 'posts/error.html', {'message': 'You are not authorized to edit this post.'})
+    
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'posts/post_form.html', {'form': form})
+
+# View for deleting a post
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    # Ensure only the post suthor or staff can delete the post
+    if request.user != post.author and not request.user.is_staff:
+        return render(request, 'posts/error.html', {'message': 'You are not authorized to delete this post.'})
+    
+    if request.method == "POST":
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'posts/post_confirm_delete.html', {'post': post})
