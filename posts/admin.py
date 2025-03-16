@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
+
 # Define a custom UserAdmin class with additional actions
 class CustomUserAdmin(UserAdmin):
     # Add actions for locking and unlocking user account
@@ -24,6 +25,7 @@ class CustomUserAdmin(UserAdmin):
             updated = queryset.update(is_active=True)
             self.message_user(request, f"{updated} users have been unlocked.")
         unlock_users.short_description = "Unlock selected user accounts."
+
 
 # Unregister the default UserAdmin
 admin.site.unregister(User)
