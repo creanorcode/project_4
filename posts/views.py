@@ -107,3 +107,34 @@ def comment_delete(request, pk):
         comment.delete()
         return redirect('post_detail', pk=post_pk)
     return render(request, 'posts/comment_confirm_delete.html', {'comment': comment})
+
+# View for handling post voting via AJAX
+@require_POST
+@login_required
+def vote_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    data = json.loads(request.body)
+    vote = data.get('vote')
+    # Increment upvotes or downvotes based on vote type
+    if vote == 'up':
+        post.upvotes += 1
+    elif vote == 'down':
+        post.downvotes += 1
+    post.save()
+    return JsonResponse({'vote_score': post.vote_score()})
+
+# API view for updating a post (example using PUT method)
+@require_http_methods(["PUT"])
+@login_required
+def api_post_update(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    # Only allow post author or staff to update the post
+    if request.user != post.author and not request.user.is_staff:
+        return JsonResponse({'error': 'Not authorized'}, status=403)
+    
+    data = json.loads(request.body)
+    form = PostForm(data, instance=post)
+    if form.is_valid():
+        form.save()
+        return JsonResponse({'message': 'Post updated', 'vote_score': post.vote_score()})
+    return JsonResponse(form.errors, status=400)
