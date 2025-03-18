@@ -11,7 +11,6 @@ urlpatterns [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     # Route for creating a new post
     path('post/new/', views.post_create, name='post_create'),
-]
 
 # Routes for updating and deleting posts
 
@@ -34,3 +33,13 @@ path('user/<str:username>/', views.user_profile, name='user_profile'),
 
 # API endpoint example for updating a post via PUT
 path('api/post/<int:pk>/update/', views.api_post_update, name='api_post_update'),
+
+# Custom admin routes for managing user accounts
+
+# Route for managing users (custom admin page)
+path('admin/manage-users/', views.manage_users, name='manage_users'),
+# Route for locking a user account
+path('admin/lock-user/<int:user_id>/', views.lock_user, name='lock_user'),
+# Route for deleting a user account
+path('admin/delete-user/<int:user_id>/', views.delete_user, name='delete_user'),
+]
