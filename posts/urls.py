@@ -12,3 +12,10 @@ urlpatterns [
     # Route for creating a new post
     path('post/new/', views.post_create, name='post_create'),
 ]
+
+# Routes for updating and deleting posts
+
+# Route for updating an existing post; optionally, you can use a class-based view instead
+path('post/<int:pk>/edit/', views.post_update, name='post_update'),
+# Route for deleting a post
+path('post/<int:pk>/delete/', views.post_delete, name='post_delete'),
