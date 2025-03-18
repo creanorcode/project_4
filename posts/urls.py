@@ -28,3 +28,9 @@ path('post/<int:pk>/vote/', views.vote_post, name='vote_post'),
 # Routes for editing and deleting comments
 path('comment/<int:pk>/edit/', views.comment_update, name='comment_update'),
 path('comment/<int:pk>/delete/', views.comment_delete, name='comment_delete'),
+
+# Route for viewing a user´s profile by username
+path('user/<str:username>/', views.user_profile, name='user_profile'),
+
+# API endpoint example for updating a post via PUT
+path('api/post/<int:pk>/update/', views.api_post_update, name='api_post_update'),
