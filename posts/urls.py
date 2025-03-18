@@ -19,3 +19,12 @@ urlpatterns [
 path('post/<int:pk>/edit/', views.post_update, name='post_update'),
 # Route for deleting a post
 path('post/<int:pk>/delete/', views.post_delete, name='post_delete'),
+
+# Routes for post voting and comment management
+
+# Route for voting on a post via AJAX
+path('post/<int:pk>/vote/', views.vote_post, name='vote_post'),
+
+# Routes for editing and deleting comments
+path('comment/<int:pk>/edit/', views.comment_update, name='comment_update'),
+path('comment/<int:pk>/delete/', views.comment_delete, name='comment_delete'),
