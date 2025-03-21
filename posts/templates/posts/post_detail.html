@@ -1,7 +1,7 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 <!-- Begin post detail content -->
- <article class="mb-4">
+<article class="mb-4">
     <!-- Post title -->
     <h2>{{ post.title }}</h2>
     <!-- Post meta information -->
@@ -10,4 +10,21 @@
     <p>{{ post.content }}</p>
     <!-- Post vote score -->
     <p>Score: {{ post.vote_score }}</p>
- </article>
+</article>
+
+<section class="mb-4">
+    <!-- Comment header -->
+    <h3>Comments</h3>
+    <!-- List group for comments -->
+    <div class="list-group">
+        {% for comment in comments %}
+        <div class="list-group-item">
+            <!-- Comment content -->
+            <p>{{ comment.content }}</p>
+            <!-- Comment meta information -->
+            <p class="text-muted">By {{ comment.author.username }} - {{ comment.created_at|date"Y-m-d H:i }}</p>
+            <!-- Comment vote score -->
+            <p>Score: {{ comment.vote_score }}</p>
+        </div>
+    </div>
+</section>
