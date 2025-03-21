@@ -4,4 +4,10 @@
 <div class="container mt-4">
     <!-- Display header: "Edit Post" if editing an existing post, otherwise "Create New Post" -->
     <h2>{% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}</h2>
+    <!-- Begin form for post submission -->
+    <form method="post">
+        {% csrf_token %}
+        <!-- Render the form fields using Django´s as_p helper -->
+        {{ form.as_p }}
+    </form>
 </div>
