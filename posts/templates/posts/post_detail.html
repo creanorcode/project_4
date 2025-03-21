@@ -31,4 +31,17 @@
         <p class="text-muted">No comments available.</p>
         {% endfor %}
     </div>
+
+    {% if user.is_authenticated %}
+    <!-- Comment form for authenticated users -->
+    <h4 class="mt-4">Add a Comment</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
+    {% else %}
+    <!-- Prompt login if not authenticated -->
+    <p><a href="{% url 'login' %}">Login</a> to leave a comment.</p>
+    {% endif %}
 </section>
