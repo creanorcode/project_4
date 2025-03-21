@@ -6,4 +6,12 @@
     <h2>Confirm Deletion</h2>
     <!-- Show confirmation message with the post title -->
     <p>Are you sure you want to delete "{{ post.title }}"?</p>
+    <!-- Begin deletion form -->
+    <form method="post">
+        {% csrf_token %}
+        <!-- Submit button for deletion -->
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <!-- Cancel button redirecting back to the post detail page -->
+        <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
 </div>
