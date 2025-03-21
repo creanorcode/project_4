@@ -26,5 +26,9 @@
             <!-- Comment vote score -->
             <p>Score: {{ comment.vote_score }}</p>
         </div>
+        {% empty %}
+        <!-- Message when there are no comments -->
+        <p class="text-muted">No comments available.</p>
+        {% endfor %}
     </div>
 </section>
