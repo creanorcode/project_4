@@ -1,3 +1,9 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 <!-- Begin post_confirm_delete content block -->
+<div class="alert alert-danger">
+    <!-- Display heading for deletion confirmation -->
+    <h2>Confirm Deletion</h2>
+    <!-- Show confirmation message with the post title -->
+    <p>Are you sure you want to delete "{{ post.title }}"?</p>
+</div>
