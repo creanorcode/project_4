@@ -1,3 +1,7 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 <!-- Begin post_form content block -->
+<div class="container mt-4">
+    <!-- Display header: "Edit Post" if editing an existing post, otherwise "Create New Post" -->
+    <h2>{% if form.instance.pk %}Edit Post{% else %}Create New Post{% endif %}</h2>
+</div>
