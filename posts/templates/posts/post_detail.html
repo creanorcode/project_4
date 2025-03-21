@@ -1,3 +1,13 @@
 {% extends 'posts/base.html' %}
 {% block content %}
 <!-- Begin post detail content -->
+ <article class="mb-4">
+    <!-- Post title -->
+    <h2>{{ post.title }}</h2>
+    <!-- Post meta information -->
+    <p class="text-muted">By {{ post.author.username }} - {{ post.created_at|date:"Y-m-d H:i" }}</p>
+    <!-- Post content -->
+    <p>{{ post.content }}</p>
+    <!-- Post vote score -->
+    <p>Score: {{ post.vote_score }}</p>
+ </article>
