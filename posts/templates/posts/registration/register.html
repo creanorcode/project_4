@@ -8,4 +8,8 @@
 <!-- Begin registration form -->
 <form method="post">
     {% csrf_token %}
+    <!-- Render registration form fields -->
+    {{ form.as_p }}
+    <!-- Submit button for registration -->
+    <button type="submit">Register</button>
 </form>
