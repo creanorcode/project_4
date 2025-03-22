@@ -11,3 +11,28 @@ Define CSS variables for consistent colors across tje site.
     --background-color: #f5f5f5;    /* Background color (light gray) */
     --link-color: #0d6efd;  /* Link color (blue) */
 }
+
+/* Global Base Styles */
+body {
+    font-family: 'Roboto', sans-serif;  /* Use import Roboto font */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Anchor link styles with smooth jover transition */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Container adjustments for consistent spacing */
+.container {
+    margin-top: 20px;
+}
