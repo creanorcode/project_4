@@ -1,0 +1,13 @@
+/* Import Google Fonts (Roboto) for consistent typography */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Global Color Palette
+Define CSS variables for consistent colors across tje site.
+*/
+:root {
+    --primary-color: #3498db;   /* Primary Color (blue) */
+    --secondary-color: #2ecc71; /* Secondary color (green) */
+    --text-color: #333333;  /* Text color (dark grey) */
+    --background-color: #f5f5f5;    /* Background color (light gray) */
+    --link-color: #0d6efd;  /* Link color (blue) */
+}
