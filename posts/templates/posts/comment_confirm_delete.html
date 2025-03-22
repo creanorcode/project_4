@@ -9,5 +9,9 @@
     <!-- Start the deletion form with POST method -->
     <form method="post">
         {% csrf_token %}
+        <!-- Button to confirm deletion -->
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <!-- Cancel button to return to post detail page -->
+        <a href="{% url 'post_detail' comment.post.pk %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
