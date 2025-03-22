@@ -9,6 +9,9 @@
     <!-- Begin form for submitting a comment -->
     <form method="post">
         {% csrf_token %}
-
+        <!-- Render the comment form fields -->
+        {{ form.as_p }}
+        <!-- Submit button for the comment form -->
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
     </form>
 </div>
