@@ -41,3 +41,17 @@ a:hover {
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow to navbar */
 }
+
+/* Custom Button Styling */
+/* .btn-custom can be used for buttons that need a unique look beyond Bootstrap´s default */
+.btn-custom {
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--secondary-color);
+}
