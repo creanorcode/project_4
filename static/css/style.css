@@ -77,3 +77,12 @@ p {
     line-height: 1.6;
     margin-bottom: 1rem;
 }
+
+/* Footer Styling */
+footer {
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
