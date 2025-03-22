@@ -36,3 +36,8 @@ a:hover {
 .container {
     margin-top: 20px;
 }
+
+/* Navbar Styling */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow to navbar */
+}
