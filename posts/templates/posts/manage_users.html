@@ -16,6 +16,29 @@
         </tr>
     </thead>
     <tbody>
-        
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <!-- Display user status based on is_active flag -->
+                {% if user.is_active %}
+                    Active
+                {% else %}
+                    Inactive
+                {% endif %}
+            </td>
+            <td>
+                <!-- Conditional action buttons: Lock if active, display badge if locked -->
+                {% if user.is_active %}
+                    <a href="{% url 'lock_user' user.id %}" class="btn btn-sm btn-warning">Lock</a>
+                {% else %}
+                    <span class="badge bg-secondary">Locked</span>
+                {% endif %}
+                <!-- Delete user action -->
+                <a href="{% url 'delete_user' user.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
  </table>
