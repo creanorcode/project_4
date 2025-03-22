@@ -86,3 +86,10 @@ footer {
     font-size: 0.9rem;
     text-align: center;
 }
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 1rem; /* Add horizontal padding for small devices */
+    }
+}
