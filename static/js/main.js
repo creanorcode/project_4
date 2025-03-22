@@ -42,3 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
 })
+
+// Utility function to retrieve a cookie value by name.
+// This is used to get CSRF token for secure requests.
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        // Split document.cookie string into individual cookies
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Check if the cookie string starts with the name we´re looking for
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
