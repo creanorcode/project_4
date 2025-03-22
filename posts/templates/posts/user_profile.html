@@ -13,5 +13,8 @@
         <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
     </li>
     {% empty %}
+    <!-- Message to display if no posts are available -->
+    <li class="list-group-item">No posts available.</li>
+    {% endfor %}
 
 </ul>
