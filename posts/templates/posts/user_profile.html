@@ -7,5 +7,11 @@
 <!-- Begin section for user´s posts -->
 <h3 class="mt-4">My Posts</h3>
 <ul class="list-group">
+    {% for post in user_posts %}
+    <!-- Render each post as a list item with a link to post_detail -->
+    <li class="list-group-item">
+        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+    </li>
+    {% empty %}
 
 </ul>
