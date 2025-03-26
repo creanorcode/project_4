@@ -9,7 +9,8 @@ environ.Env.read_env()
 # Set the base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Configure the secret key, debug mode, and allowed hosts from environment variables
+# Configure the secret key, debug mode, and allowed
+# hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='din-default-hemlighet')
 DEBUG = env('DJANGO_DEBUG', default=False)
 ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='localhost').split(',')
@@ -58,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-# Define the WSGI application for serving the project 
+# Define the WSGI application for serving the project
 WSGI_APPLICATION = 'project_4.wsgi.application'
 
 # Configure the database settings using environment variables
