@@ -1,29 +1,33 @@
-import os
+# Import necessary modules
 from pathlib import Path
 import environ
 
-# Initiera miljövariabler
+# Initialize environment variables using Django-environ
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env()
 
+# Set the base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Configure the secret key, debug mode, and allowed hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='din-default-hemlighet')
 DEBUG = env('DJANGO_DEBUG', default=False)
 ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='localhost').split(',')
 
+# Application definition: list of installed apps
 INSTALLED_APPS = [
-    # Standardappar
+    # Default Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Egna appar
+    # Custom apps
     'posts',
 ]
 
+# Define tje middleware classes for request/response processing
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -34,8 +38,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Set the root URL configuration module
 ROOT_URLCONF = 'project_4.urls'
 
+# Configure templates for the project
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -52,8 +58,10 @@ TEMPLATES = [
     },
 ]
 
+# Define the WSGI application for serving the project 
 WSGI_APPLICATION = 'project_4.wsgi.application'
 
+# Configure the database settings using environment variables
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -65,5 +73,6 @@ DATABASES = {
     }
 }
 
+# Static files (CSS, Javascript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'

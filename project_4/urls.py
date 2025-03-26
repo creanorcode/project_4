@@ -10,7 +10,8 @@ from posts.views import register
 urlpatterns = [
     # Admin URL for Django admin interface
     path('admin/', admin.site.urls),
-    # URL patterns for built-in Django authentication (login, logout, password reset, etc.)
+    # URL patterns for built-in Django authentication
+    # (login, logout, password reset, etc.)
     path('accounts/', include('django.contrib.auth.urls')),
     # Registration URL using a custom register view
     path('register/', register, name='register'),
