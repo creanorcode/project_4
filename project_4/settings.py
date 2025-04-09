@@ -71,7 +71,12 @@ WSGI_APPLICATION = 'project_4.wsgi.application'
 
 # Configure the database settings using environment variables
 DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=env(
+            'DATABASE_URL',
+            default='sqlite://db.sqlite3'
+        )
+    )
 }
 
 # Static files (CSS, Javascript, Images)
