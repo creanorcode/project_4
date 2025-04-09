@@ -12,8 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Configure the secret key, debug mode, and allowed
 # hosts from environment variables
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='din-default-hemlighet')
-DEBUG = env('DJANGO_DEBUG', default=False)
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+DEBUG = env('DJANGO_DEBUG', default=True) == 'True'
 ALLOWED_HOSTS = (
     env(
         'DJANGO_ALLOWED_HOSTS',
