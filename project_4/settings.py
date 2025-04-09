@@ -1,6 +1,7 @@
 # Import necessary modules
 from pathlib import Path
 import environ
+import dj_database_url
 
 # Initialize environment variables using Django-environ
 env = environ.Env(DEBUG=(bool, False))
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
 # Define tje middleware classes for request/response processing
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -64,16 +66,10 @@ WSGI_APPLICATION = 'project_4.wsgi.application'
 
 # Configure the database settings using environment variables
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME', default='serious_talk.db'),
-        'USER': env('DB_USER', default='user'),
-        'PASSWORD': env('DB_PASSWORD', default='password'),
-        'HOST': env('DB_HOST', default='localhost'),
-        'PORT': env('DB_PORT', default='5432',)
-    }
+    'default': dj_database_url.config(default=env('DATABASE_URL'))
 }
 
 # Static files (CSS, Javascript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
