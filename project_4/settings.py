@@ -74,7 +74,7 @@ DATABASES = {
     'default': dj_database_url.config(
         default=env(
             'DATABASE_URL',
-            default='sqlite://db.sqlite3'
+            default='sqlite:///db.sqlite3'
         )
     )
 }
