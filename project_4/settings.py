@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='din-default-hemlighet')
 DEBUG = env('DJANGO_DEBUG', default=False)
-ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='localhost').split(',')
+ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='.herokuapp.com,localhost,127.0.0.1').split(',')
 
 # Application definition: list of installed apps
 INSTALLED_APPS = [
