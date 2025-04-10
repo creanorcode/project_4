@@ -34,7 +34,12 @@ INSTALLED_APPS = [
     'posts',
 ]
 
-# Define tje middleware classes for request/response processing
+# Other settings such as database configuration, middleware, etc.
+
+# Add DEFAULT_AUTO_FIELD at the end of the file
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Define the middleware classes for request/response processing
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
