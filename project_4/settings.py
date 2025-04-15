@@ -84,6 +84,28 @@ DATABASES = {
     )
 }
 
+# Password validation (you can leave these as the default)
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# International settings
+LANGUAGE_CODE = 'sv-se'
+TIME_ZONE = 'Europe/Stockholm'
+USE_I18N = True
+USE_TZ = True
+
 # Static files (CSS, Javascript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
