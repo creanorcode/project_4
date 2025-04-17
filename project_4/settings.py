@@ -23,6 +23,8 @@ ALLOWED_HOSTS = (
 # Safety against XSS and content sniffing
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+# Prevent pages from being embedded in <iframe>
+X_FRAME_OPTIONS = 'DENY'
 
 # Application definition: list of installed apps
 INSTALLED_APPS = [
