@@ -26,9 +26,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Prevent pages from being embedded in <iframe>
 X_FRAME_OPTIONS = 'DENY'
 # Force HTTPS (used in production) and Cookies only over HTTPS
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 
 # Application definition: list of installed apps
 INSTALLED_APPS = [
