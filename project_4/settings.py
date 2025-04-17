@@ -41,7 +41,10 @@ DEBUG = env('DJANGO_DEBUG', default=False)
 ALLOWED_HOSTS = (
     env.list(
         'DJANGO_ALLOWED_HOSTS',
-        default=['serioustalk-version1-52554b996a26.herokuapp.com,localhost,127.0.0.1']
+        default=[
+            'serioustalk-version1-52554b996a26.herokuapp.com,'
+            'localhost,127.0.0.1'
+        ]
     )
 )
 
