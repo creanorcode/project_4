@@ -1,5 +1,4 @@
 # Import necessary modules
-import os
 from pathlib import Path
 import environ
 import dj_database_url
