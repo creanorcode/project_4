@@ -10,3 +10,4 @@ cloudinary_python.txt
 .venv
 db.sqlite3
 .env
+.env.production
