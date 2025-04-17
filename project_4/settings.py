@@ -13,13 +13,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Configure the secret key, debug mode, and allowed
 # hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY')
-DEBUG = env('DJANGO_DEBUG', default=True) == 'True'
+DEBUG = env('DJANGO_DEBUG', default=False) == 'False'
 ALLOWED_HOSTS = (
     env(
         'DJANGO_ALLOWED_HOSTS',
         default='.herokuapp.com,localhost,127.0.0.1'
     ).split(',')
 )
+# Safety against XSS and content sniffing
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Application definition: list of installed apps
 INSTALLED_APPS = [
