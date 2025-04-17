@@ -1,4 +1,5 @@
 # Import necessary modules
+import os
 from pathlib import Path
 import environ
 import dj_database_url
@@ -13,22 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Configure the secret key, debug mode, and allowed
 # hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY')
-DEBUG = env('DJANGO_DEBUG', default=False) == 'False'
+DEBUG = env('DJANGO_DEBUG', default=False)
 ALLOWED_HOSTS = (
     env(
         'DJANGO_ALLOWED_HOSTS',
         default='.herokuapp.com,localhost,127.0.0.1'
     ).split(',')
 )
-# Safety against XSS and content sniffing
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-# Prevent pages from being embedded in <iframe>
-X_FRAME_OPTIONS = 'DENY'
-# Force HTTPS (used in production) and Cookies only over HTTPS
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
 
 # Application definition: list of installed apps
 INSTALLED_APPS = [
@@ -44,10 +36,6 @@ INSTALLED_APPS = [
 ]
 
 # Other settings such as database configuration, middleware, etc.
-
-# Add DEFAULT_AUTO_FIELD at the end of the file
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 # Define the middleware classes for request/response processing
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +119,22 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# ------ Safety settings ------
+# Safety against XSS and content sniffing
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+# Prevent pages from being embedded in <iframe>
+X_FRAME_OPTIONS = 'DENY'
+# Force HTTPS (used in production) and Cookies only over HTTPS
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000 # One year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+# Add DEFAULT_AUTO_FIELD at the end of the file
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
