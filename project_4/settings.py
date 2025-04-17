@@ -1,6 +1,5 @@
 # Import necessary modules
 from pathlib import Path
-import os
 import environ
 import dj_database_url
 
@@ -28,7 +27,9 @@ if env.bool('USE_PRODUCTION_ENV'):
     if prod_env_file.exists():
         env.read_env(env_file=prod_env_file)
     else:
-        raise FileNotFoundError(f"Production env file not found: {prod_env_file}")
+        raise FileNotFoundError(
+            f"Production env file not found: {prod_env_file}"
+        )
 
 # -------------------------------------------------------
 # CORE SETTINGS

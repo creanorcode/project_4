@@ -1,6 +1,8 @@
 # PRoject_4/urls.py
 
 # Import Django´s admin module and URL utilities
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
@@ -18,3 +20,8 @@ urlpatterns = [
     # Include URL patterns for the main application from the posts app
     path('', include('posts.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
