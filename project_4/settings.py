@@ -1,14 +1,25 @@
 # Import necessary modules
 from pathlib import Path
+import os
 import environ
 import dj_database_url
 
-# Initialize environment variables using Django-environ
-env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env()
-
 # Set the base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Check if USE_PRODUCTION_ENV is set in the system
+use_production_env = os.environ.get("USE_PRODUCTION_ENV") == "true"
+
+# Initialize environment variables using Django-environ
+env_path = (
+    BASE_DIR / ".env.production"
+    if use_production_env
+    else BASE_DIR / ".env"
+)
+
+# Initialize environment variables.
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(env_file=env_path)
 
 # Configure the secret key, debug mode, and allowed
 # hosts from environment variables
@@ -131,7 +142,7 @@ SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 
 if not DEBUG:
-    SECURE_HSTS_SECONDS = 31536000 # One year
+    SECURE_HSTS_SECONDS = 31536000  # One year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
