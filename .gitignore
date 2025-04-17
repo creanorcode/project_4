@@ -11,3 +11,4 @@ cloudinary_python.txt
 db.sqlite3
 .env
 .env.production
+/staticfiles
