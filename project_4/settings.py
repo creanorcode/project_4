@@ -37,13 +37,14 @@ if env.bool('USE_PRODUCTION_ENV'):
 # Configure the secret key, debug mode, and allowed
 # hosts from environment variables
 SECRET_KEY = env('DJANGO_SECRET_KEY')
-DEBUG = env('DJANGO_DEBUG', default=False)
+DEBUG = env('DJANGO_DEBUG')
 ALLOWED_HOSTS = (
     env.list(
         'DJANGO_ALLOWED_HOSTS',
         default=[
-            'serioustalk-version1-52554b996a26.herokuapp.com,'
-            'localhost,127.0.0.1'
+            'serioustalk-version1-52554b996a26.herokuapp.com',
+            'localhost',
+            '127.0.0.1',
         ]
     )
 )
