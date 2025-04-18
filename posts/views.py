@@ -17,7 +17,7 @@ from django.views.generic import UpdateView
 def post_list(request):
     # Retrieve posts ordered by creation date (newest first)
     posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'post/post_list.html', {'posts': posts})
+    return render(request, 'posts/post_list.html', {'posts': posts})
 
 
 # View for displaying post details along with its comments
