@@ -33,10 +33,14 @@
             </div>
         </div>
     </div>
-    {% endfor %}
     {% empty %}
     <!-- Display message if no post are available -->
-    <p>No post available</p>
+    <div class="col">
+        <div class="alert alert-info">
+            <p>No posts available</p><a href="{% url 'post_create' %}">Create one now</a>.
+        </div>
+    </div>
     {% endfor %}
+    
 </div>
 {% endblock %}
