@@ -11,6 +11,9 @@ from .models import Post, Comment, Category
 from .forms import PostForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import UpdateView
+from django.views.generic import CreateView
+from .forms import CustomUserCreationForm
+from django.urls import reverse_lazy
 
 
 # View for listing all posts (homepage)
@@ -162,13 +165,14 @@ def api_post_update(request, pk):
 # View for user registration using Django´s UserCreationForm
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'Your account has been created. You can now log in')
             return redirect('post_list')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
 
