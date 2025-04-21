@@ -233,10 +233,11 @@ LOGGING = {
 }
 
 # ------------------------------------------------------------------------------
-# LOGOUT DIRECTION
+# LOGOUT & LOGIN DIRECTION
 # ------------------------------------------------------------------------------
 # Redirect users to the homepage after they log out
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 # ------------------------------------------------------------------------------
 # DEFAULT PRIMARY KEY FIELD TYPE
