@@ -90,12 +90,12 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 # EMAIL (SMTP) CONFIGURATION
 # ---------------------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST = env('EMAIL_HOST', default='')
 EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'no-reply@example.com'
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='no-reply@localhost')
 
 # ----------------------------------------------------------------------
 # OTHER SETTINGS SUCH AS DATABASE CONFIGURATION, MIDDLEWARE, TEMPLATES, ETC.
