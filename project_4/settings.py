@@ -60,11 +60,46 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     # Custom apps
     'posts',
 ]
+SITE_ID = 1
 
-# Other settings such as database configuration, middleware, etc.
+# -------------------------------------------------------------------------
+# DJANGO_ALLAUTH - LOGIN, REGISTER, SOCIAL-LOGIN, EMAIL-VERIFICATION
+# --------------------------------------------------------------------------
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'django.account.auth_backends.AuthenticationBackend',  # django-allauth
+]
+
+# --------------------------------------------------------------
+# DJANGO-ALLAUTH CONFIGURATION
+# --------------------------------------------------------------
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
+
+# ---------------------------------------------------------------
+# EMAIL (SMTP) CONFIGURATION
+# ---------------------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'no-reply@example.com'
+
+# ----------------------------------------------------------------------
+# OTHER SETTINGS SUCH AS DATABASE CONFIGURATION, MIDDLEWARE, TEMPLATES, ETC.
+# ----------------------------------------------------------------------
 # Define the middleware classes for request/response processing
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

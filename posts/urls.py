@@ -1,7 +1,8 @@
 # posts/urls.py
 
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib import admin
 
 # Basic post routes for listing, detail view and creation
 urlpatterns = [
@@ -11,6 +12,9 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     # Route for creating a new post
     path('post/new/', views.post_create, name='post_create'),
+    # Route for accounts, django-allauth
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
 
     # Routes for updating and deleting posts
 
