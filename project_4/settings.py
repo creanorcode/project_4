@@ -74,7 +74,7 @@ SITE_ID = 1
 # --------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # default
-    'django.account.auth_backends.AuthenticationBackend',  # django-allauth
+    'allauth.account.auth_backends.AuthenticationBackend',  # django-allauth
 ]
 
 # --------------------------------------------------------------
@@ -108,7 +108,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    
+
     # django-allauth needs this:
     'allauth.account.middleware.AccountMiddleware',
 
