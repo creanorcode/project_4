@@ -43,8 +43,8 @@ ALLOWED_HOSTS = (
         'DJANGO_ALLOWED_HOSTS',
         default=[
             'serioustalk-version1-52554b996a26.herokuapp.com',
-            'localhost',
-            '127.0.0.1',
+            'serioustalk.eu',
+            'www.serioustalk.eu',
         ]
     )
 )
@@ -214,7 +214,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = env.list(
     'CSRF_TRUSTED_ORIGINS',
-    default=['https://serioustalk-version1-52554b996a26.herokuapp.com/']
+    default=[
+        'https://serioustalk.eu',
+        'https://www.serioustalk.eu',
+    ]
 )
 
 # Safety against XSS and content sniffing
