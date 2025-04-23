@@ -80,22 +80,24 @@ AUTHENTICATION_BACKENDS = [
 # --------------------------------------------------------------
 # DJANGO-ALLAUTH CONFIGURATION
 # --------------------------------------------------------------
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-# ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-# ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 
 # ---------------------------------------------------------------
 # EMAIL (SMTP) CONFIGURATION
 # ---------------------------------------------------------------
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = env('EMAIL_HOST', default='')
-# EMAIL_PORT = env('EMAIL_PORT')
-# EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
-# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='no-reply@localhost')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.strato.com')
+EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+DEFAULT_FROM_EMAIL = env(
+    'DEFAULT_FROM_EMAIL', default='no-reply@serioustalk.eu'
+)
 
 # ----------------------------------------------------------------------
 # OTHER SETTINGS SUCH AS DATABASE CONFIGURATION, MIDDLEWARE, TEMPLATES, ETC.
@@ -226,6 +228,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Prevent pages from being embedded in <iframe>
 X_FRAME_OPTIONS = 'DENY'
 # Force HTTPS (used in production) and Cookies only over HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
@@ -248,16 +251,16 @@ CACHES = {
 # ------------------------------------------------------------------------------
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env(
-    'EMAIL_BACKEND',
-    default='django.core.mail.backends.console.EmailBackend'
-)
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.sendgrid.net')
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
+# EMAIL_BACKEND = env(
+#     'EMAIL_BACKEND',
+#     default='django.core.mail.backends.console.EmailBackend'
+# )
+# EMAIL_HOST = env('EMAIL_HOST', default='smtp.sendgrid.net')
+# EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+# EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
 
 # ------------------------------------------------------------------------------
 # LOGGING
