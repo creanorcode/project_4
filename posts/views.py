@@ -15,6 +15,7 @@ from django.views.generic import UpdateView
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
+from allauth.account.models import EmailAddress
 
 
 # View for listing all posts (homepage)
@@ -198,9 +199,16 @@ def profile(request, username=None):
 
     user_posts = Post.objects.filter(author=profile_user).order_by('-created_at')
 
+    email_verified = EmailAddress.objects.filter(
+        user=profile_user,
+        email=profile_user.email,
+        verified=True
+    ).exists()
+
     return render(request, 'posts/profile.html', {
         'profile_user': profile_user,
-        'posts': user_posts
+        'posts': user_posts,
+        'email_verified': email_verified,
     })
 
 
