@@ -35,8 +35,10 @@ urlpatterns = [
     path('comment/<int:pk>/delete/', views.comment_delete,
          name='comment_delete'),
 
-    # Route for viewing a user´s profile by username
-    path('user/<str:username>/', views.user_profile, name='user_profile'),
+    # Route for viewing your own profile without slug
+    path('profile/', views.profile, name='my_profile')
+    # Route for viewing a user´s profile by usernamn
+    path('user/<str:username>/', views.profile, name='profile'),
 
     # API endpoint example for updating a post via PUT
     path('api/post/<int:pk>/update/', views.api_post_update,

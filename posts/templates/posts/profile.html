@@ -1,0 +1,38 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+    {{ profile_user.username }}´s Profile
+{% endblock %}
+
+{% block content %}
+    <!-- Begin user_profile content block -->
+    <!-- Display the user´s profile information -->
+    <h2>{{ profile_user.get_full_name|default:profile_user.username }}</h2>
+    <p><strong>Username:</strong> {{ profile_user.username }}</p>
+    <p><strong>Email:</strong> {{ profile_user.email }}</p>
+
+    {% if profile_user.profile.email_confirmed %}
+        <p class="text-success">Email confirmed</p>
+    {% else %}
+        <p class="text-warning">Email not confirmed</p>
+    {% endif %}
+
+    <!-- Begin section for user´s posts -->
+    <hr>
+    <h3 class="mt-4">Posts by {{ profile_user.username }}</h3>
+
+    {% if posts %}
+        <ul class="list-group">
+            {% for post in posts %}
+                <!-- Render each post as a list item with a link to post_detail -->
+                <li class="list-group-item">
+                    <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                    <span class="text-muted">on {{ post.created_at|date:"Y-m-d" }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Message to display if no posts are available -->
+        <p>No posts yet.</p>
+    {% endif %}
+{% endblock %}

@@ -1,6 +1,7 @@
 # Import necessary modules
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_http_methods
 from django.contrib.auth import login
@@ -178,13 +179,22 @@ def register(request):
 
 # View for displaying a user´s profile and their posts
 @login_required
-def user_profile(request, username):
-    from django.contrib.auth.models import User
-    user_profile = get_object_or_404(User, username=username)
-    user_posts = Post.objects.filter(author=user_profile).order_by
-    ('-created_at')
-    return render(request, 'posts/user_profile.html',
-                  {'user_profile': user_profile, 'user_posts': user_posts})
+def profile(request, username=None):
+    """
+    If username is provided, show tjat user´s profile;
+    otherwise show the profile of the current logged-in user.
+    """
+    if username:
+        profile_user = get_object_or_404(User, username=username)
+    else:
+        profile_user = request.user
+
+    user_posts = Post.objects.filter(author=profile_user).order_by('-created_at')
+
+    return render(request, 'posts/profile.html', {
+        'profile_user': profile_user,
+        'posts': user_posts
+    })
 
 
 # Optional: Class-based views for updating a post uding mixins
