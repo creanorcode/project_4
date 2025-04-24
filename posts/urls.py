@@ -14,7 +14,6 @@ urlpatterns = [
     # Route for creating a new post
     path('post/new/', views.post_create, name='post_create'),
     # Route for accounts, django-allauth
-    path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 
     # Routes for updating and deleting posts
