@@ -173,7 +173,7 @@ def register(request):
             user = authenticate(
                 request,
                 username=form.cleaned_data['username'],
-                password=form.changed_data['password1']
+                password=form.cleaned_data['password1']
             )
             if user is not None:
                 login(request, user)
