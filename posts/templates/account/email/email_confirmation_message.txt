@@ -1,9 +1,16 @@
-{% extends "account/email/base_message.txt" %}
-{% load account %}
-{% load i18n %}
+Hello {{ user.get_full_name|default:user.username }},
 
-{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktranslate with site_name=current_site.name site_domain=current_site.domain %}You're receiving this email because user {{ user_display }} has given your email address to register an account on {{ site_domain }}.{% endblocktranslate %}
+Welcome to Serious Talk! We´re thrilled you´re here.
 
-{% if code %}{% blocktranslate %}Your email verification code is listed below. Please enter it in your open browser window.{% endblocktranslate %}
+To start sharing your thoughts and connecting with others, we just need to confirm that this email-adress belongs to you. Please click the link below:
 
-{{ code }}{% else %}{% blocktranslate %}To confirm this is correct, go to {{ activate_url }}{% endblocktranslate %}{% endif %}{% endautoescape %}{% endblock content %}
+{{ activate_url }}
+
+If you can´t click, copy and paste this URL into your browser:
+{{ activate_url }}
+
+If you didn´t sign up for a Serious Talk account, no worries - just ignore this email, and nothing will change.
+
+Catch you in the discussions!
+The Serious Talk Team
+https://{{ current_site.domain }}
