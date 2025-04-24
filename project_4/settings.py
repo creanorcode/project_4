@@ -84,7 +84,8 @@ ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_RATE_LIMITS = {
-    'login_failed': [5, 300], # max 5 failed logins per 300 seconds.
+    # 10 per minute per IP, and 5 per 5 minutes per key
+    'login_failed': "10/m/ip,5/5m/key",
 }
 
 # ---------------------------------------------------------------
