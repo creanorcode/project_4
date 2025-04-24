@@ -36,7 +36,7 @@ urlpatterns = [
          name='comment_delete'),
 
     # Route for viewing your own profile without slug
-    path('profile/', views.profile, name='my_profile')
+    path('profile/', views.profile, name='my_profile'),
     # Route for viewing a user´s profile by usernamn
     path('user/<str:username>/', views.profile, name='profile'),
 
