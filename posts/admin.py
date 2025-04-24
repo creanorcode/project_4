@@ -32,6 +32,7 @@ class CustomUserAdmin(UserAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
+
 # Unregister the default UserAdmin
 admin.site.unregister(User)
 
