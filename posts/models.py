@@ -13,6 +13,10 @@ class Category(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        # Return the category´s name so Django displays that instead
+        return self.name
+
 
 # Post model representing individual
 # posts with title, content, and vote tracking.
