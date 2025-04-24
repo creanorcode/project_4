@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_http_methods
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 import json
@@ -169,7 +169,14 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            # (if you want them active immediately-skip för email-verification flows)
+            user = authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.changed_data['password1']
+            )
+            if user is not None:
+                login(request, user)
             messages.success(request, 'Your account has been created. You can now log in')
             return redirect('post_list')
     else:
