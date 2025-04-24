@@ -164,24 +164,24 @@ def api_post_update(request, pk):
 
 
 # View for user registration using Django´s UserCreationForm
-def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            # (if you want them active immediately-skip för email-verification flows)
-            user = authenticate(
-                request,
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password1']
-            )
-            if user is not None:
-                login(request, user)
-            messages.success(request, 'Your account has been created. You can now log in')
-            return redirect('post_list')
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+# def register(request):
+#    if request.method == 'POST':
+#        form = CustomUserCreationForm(request.POST)
+#        if form.is_valid():
+#            user = form.save()
+#            (if you want them active immediately-skip för email-verification flows)
+#            user = authenticate(
+#                request,
+#                username=form.cleaned_data['username'],
+#                password=form.cleaned_data['password1']
+#            )
+#            if user is not None:
+#                login(request, user)
+#            messages.success(request, 'Your account has been created. You can now log in')
+#            return redirect('post_list')
+#    else:
+#        form = CustomUserCreationForm()
+#    return render(request, 'registration/register.html', {'form': form})
 
 
 # View for displaying a user´s profile and their posts
