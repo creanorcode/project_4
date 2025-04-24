@@ -13,4 +13,4 @@ If you didn´t sign up for a Serious Talk account, no worries - just ignore this
 
 Catch you in the discussions!
 The Serious Talk Team
-https://{{ current_site.domain }}
+https://www.{{ current_site.domain }}
