@@ -3,6 +3,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib import admin
+from .views import profile, edit_profile
 
 # Basic post routes for listing, detail view and creation
 urlpatterns = [
@@ -39,6 +40,10 @@ urlpatterns = [
     path('profile/', views.profile, name='my_profile'),
     # Route for viewing a user´s profile by usernamn
     path('user/<str:username>/', views.profile, name='profile'),
+
+    path('profile/', profile, name='my_profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
+    path('profile/<str:username>/', profile, name='profile'),
 
     # API endpoint example for updating a post via PUT
     path('api/post/<int:pk>/update/', views.api_post_update,

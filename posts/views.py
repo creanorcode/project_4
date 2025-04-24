@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 import json
 from .models import Post, Comment, Category
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import UpdateView
 from django.views.generic import CreateView
@@ -211,6 +211,23 @@ def profile(request, username=None):
         'email_verified': email_verified,
     })
 
+@login_required
+def edit_profile(request):
+    """
+    Allow the logged-in user to update their first and last name.
+    """
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('my_profile')
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    return render(request, 'posts/edit_profile.html', {
+        'form': form
+    })
+        
 
 # Optional: Class-based views for updating a post uding mixins
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

@@ -29,6 +29,15 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError("This email address is already in use.")
         return email
 
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+        widget = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
 
 class PostForm(forms.ModelForm):
     """

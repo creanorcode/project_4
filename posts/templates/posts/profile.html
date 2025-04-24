@@ -7,14 +7,26 @@
 {% block content %}
     <!-- Begin user_profile content block -->
     <!-- Display the user´s profile information -->
-    <h2>{{ profile_user.get_full_name|default:profile_user.username }}</h2>
-    <p><strong>Username:</strong> {{ profile_user.username }}</p>
-    <p><strong>Email:</strong> {{ profile_user.email }}</p>
+    <h2>
+        {{ profile_user.get_full_name|default:profile_user.username }}
+    </h2>
+    <p>
+        <strong>Username:</strong> {{ profile_user.username }}
+    </p>
+    <p>
+        <strong>Email:</strong> {{ profile_user.email }}
+    </p>
 
     {% if email_verified %}
         <p class="text-success">Email confirmed</p>
     {% else %}
         <p class="text-warning">Email not confirmed</p>
+    {% endif %}
+
+    {% if request.user == profile_user %}
+        <a href="{% url 'edit_profile' %}" class="btn btn-sm btn-outline-primary mb-3">
+            Edit Profile
+        </a>
     {% endif %}
 
     <!-- Begin section for user´s posts -->

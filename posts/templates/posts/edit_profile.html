@@ -1,0 +1,23 @@
+{% extends "posts/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5" style="max-width:500px;">
+  <h2>{% trans "Edit Your Profile" %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+      {{ form.first_name.label_tag }}
+      {{ form.first_name }}
+      {{ form.first_name.errors }}
+    </div>
+    <div class="mb-3">
+      {{ form.last_name.label_tag }}
+      {{ form.last_name }}
+      {{ form.last_name.errors }}
+    </div>
+    <button class="btn btn-primary" type="submit">{% trans "Save Changes" %}</button>
+  </form>
+</div>
+{% endblock %}
