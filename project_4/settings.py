@@ -80,11 +80,12 @@ AUTHENTICATION_BACKENDS = [
 # --------------------------------------------------------------
 # DJANGO-ALLAUTH CONFIGURATION
 # --------------------------------------------------------------
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_RATE_LIMITS = {
+    'login_failed': [5, 300], # max 5 failed logins per 300 seconds.
+}
 
 # ---------------------------------------------------------------
 # EMAIL (SMTP) CONFIGURATION
