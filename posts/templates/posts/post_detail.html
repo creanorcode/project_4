@@ -28,7 +28,7 @@
             <!-- Comment content -->
             <p>{{ comment.content }}</p>
             <!-- Comment meta information -->
-            <p class="text-muted">By {{ comment.author.username }} - {{ comment.created_at|date:"Y-m-d H:i }}</p>
+            <p class="text-muted">By {{ comment.author.username }} - {{ comment.created_at|date:"Y-m-d H:i" }}</p>
             <!-- Comment vote score -->
             <p>Score: {{ comment.vote_score }}</p>
         </div>
