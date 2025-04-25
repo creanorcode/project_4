@@ -228,7 +228,7 @@ CSRF_TRUSTED_ORIGINS = env.list(
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 # Prevent pages from being embedded in <iframe>
-# X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 # Force HTTPS (used in production) and Cookies only over HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = not DEBUG
