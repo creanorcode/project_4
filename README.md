@@ -1,131 +1,234 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Welcome to Serious Talk
 
-Welcome USER_NAME,
+A full-featured Django discussion forum with user authentication, email verification, post & comment interactions, voting, profiles, and an admin dashboard—all styled with Bootstrap and deployed on Heroku.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[![Serioustalk-mockup.png](https://i.postimg.cc/CLjywfBL/Serioustalk-mockup.png)](https://postimg.cc/BXQ7gbBd)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## 📖 Overview
+Serious Talk is a modern, responsive forum application where users can register, verify their email, create and interact with posts, vote, comment, and manage profiles. Administrators can moderate via a comprehensive admin interface.
 
-## Gitpod Reminders
+**Serious Talk** is a modern, responsive Django forum application built for high-quality, in-depth conversation. Whether you’re sharing code tips, UI/UX best practices, or community announcements, Serious Talk provides the tools you need:
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
-
-### Connecting your Mongo database
-
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**June 18, 2024,** Add Mongo back into template
-
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
-
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- **Post & Comment** – Create, edit, comment on, and vote posts in real time (AJAX).  
+- **Email-Verified Accounts** – Mandatory email confirmation via `django-allauth`.  
+- **Custom Profiles** – Per-user profile pages, full name, avatar, and post history.  
+- **Categories & Tags** – Organize content into high-level categories and (future) subcategories.  
+- **Admin & Permissions** – Django admin with groups (staff, moderators) and custom user management.  
+- **Static Asset Pipeline** – WhiteNoise + ManifestStaticFilesStorage, Heroku-ready.  
+- **Two-Step ENV Overlay** – Separate `.env` and `.env.production` with `django-environ`.  
+- **Secure by Default** – HSTS, X-Frame-Options, secure cookies, and CSRF protection everywhere.  
 
 ---
 
-Happy coding!
+## ✅ Features
+
+### Existing Features
+
+- **User Registration & Authentication**  
+  Secure signup/login via **django-allauth**, with username and email support.  
+- **Email Confirmation**  
+  Mandatory verification emails, customizable templates.  
+- **Post Lifecycle**  
+  Create, edit, delete posts with rich Bootstrap-styled forms.  
+- **Threaded Comments**  
+  Reply to posts and comments in threads.  
+- **Upvote/Downvote**  
+  AJAX-powered voting system with real-time score updates.  
+- **Custom Profile Pages**  
+  Per-user pages at `/users/<username>/` showing their info & posts.  
+- **Category Management**  
+  Top-level categories, easy admin CRUD, human-readable names.  
+- **Responsive Design**  
+  Built with Bootstrap 5 for mobile, tablet, and desktop.  
+- **Security Best Practices**  
+  HTTPS, HSTS, CSRF, X-Frame-Options, secure cookies.  
+- **Heroku-Ready Deployment**  
+  WhiteNoise, ManifestStaticFilesStorage, `Procfile`, Postgres support.
+
+### Future Features
+
+- **Tagging System**  
+  Allow users to tag posts for finer organization and filtering.  
+- **Search & Filtering**  
+  Full-text search across posts, comments, and users.  
+- **Real-Time Notifications**  
+  Alert users to replies, mentions, and votes via WebSockets.  
+- **Markdown / Rich Text**  
+  Support for Markdown or WYSIWYG editor in posts and comments.  
+- **Media Uploads**  
+  Image and file attachments on posts/comments.  
+- **OAuth & Social Logins**  
+  Google, GitHub, Facebook integration via allauth.  
+- **Private Messaging**  
+  One-to-one chats between registered users.  
+- **Dark Mode**  
+  Optional night-friendly color scheme.
+
+---
+
+## 🛠 Tech Stack
+| Component               | Technology                       |
+|-------------------------|----------------------------------|
+| Backend Framework       | Django 4.2                       |
+| Auth & Email            | django-allauth 65.7              |
+| Database (Prod/Local)   | PostgreSQL / SQLite              |
+| Static Files            | Whitenoise, Bootstrap 5          |
+| Deployment              | Heroku-24 stack, Gunicorn        |
+| Language                | Python 3.12                      |
+| Version Control         | Git, GitHub                      |
+
+---
+
+## 🚀 Installation & Setup
+```bash
+git clone https://github.com/creanorcode/project_4.git
+cd project_4
+python3 -m venv .venv
+source .venv/bin/activate    # macOS/Linux
+pip install -r requirements.txt
+```
+
+### 🔧 Configuration
+Copy `.env.example` to `.env` and fill in secrets:
+```dotenv
+DJANGO_SECRET_KEY=your-secret-key
+DJANGO_DEBUG=True
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=https://localhost,https://127.0.0.1
+USE_PRODUCTION_ENV=False
+DATABASE_URL=sqlite:///db.sqlite3
+EMAIL_HOST=smtp.strato.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=you@domain.com
+EMAIL_HOST_PASSWORD=your-password
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL=no-reply@domain.com
+```
+
+---
+
+## 🗄 Database & Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+## ▶️ Running Locally
+```bash
+python manage.py runserver
+```
+Visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+---
+
+## ☁️ Deployment
+
+### Heroku
+1. `heroku login` & `heroku create your-app`
+2. Set Config Vars:
+   ```bash
+   heroku config:set NODE_ENV=production \
+     DJANGO_DEBUG=False \
+     DJANGO_SECRET_KEY=... \
+     DJANGO_ALLOWED_HOSTS=your-app.herokuapp.com \
+     CSRF_TRUSTED_ORIGINS=https://your-app.herokuapp.com \
+     DATABASE_URL=postgres://... \
+     EMAIL_HOST=... \
+     EMAIL_PORT=... \
+     EMAIL_HOST_USER=... \
+     EMAIL_HOST_PASSWORD=... \
+     EMAIL_USE_TLS=True \
+     DEFAULT_FROM_EMAIL=you@domain.com
+   ```
+3. Ensure `DATABASE_URL` points to your Heroku Postgres addon.
+4. `git push heroku main` & `heroku open`
+
+### Custom Domain
+- Add your domain in Heroku
+- In DNS provider, CNAME `www` → `<app>.herokudns.com`
+- Setup ALIAS/URL-redirect for root domain
+- Add domain to `DJANGO_ALLOWED_HOSTS` & `CSRF_TRUSTED_ORIGINS`
+
+---
+
+## 🎨 Styling & Templates
+- **Base Layout**: `posts/templates/posts/base.html` with Bootstrap and navbar logic.
+- **Allauth Overrides**: Copy allauth templates into `templates/account/`:
+  - `login.html`, `signup.html`, `logout.html`
+  - Password reset flow (`password_reset.html`, etc.)
+  - Email confirmation pages:
+    - `email_confirmation_sent.html`
+    - `email_confirm.html`
+  - Email templates in `templates/account/email/`:
+    - `email_confirmation_subject.txt`
+    - `email_confirmation_message.txt`
+    - (Optional) `email_confirmation_message.html`
+- **Custom Filters**: `add_class` filter to inject Bootstrap classes.
+
+---
+
+## 🙋‍♂️ User Profiles
+- **Profile View**: `profile(request, username)` shows user info, posts, and email verification status via `allauth.account.models.EmailAddress`.
+- **Edit Profile**: Users can update first & last name using `edit_profile` view and form.
+- Templates in `posts/templates/posts/profile.html` and `edit_profile.html`.
+
+---
+
+## 📧 Email & Verification
+- **Settings**:
+  ```python
+  ACCOUNT_EMAIL_REQUIRED = True
+  ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+  ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+  ACCOUNT_SIGNUP_FIELDS = ['username*','email*','password1*','password2*']
+  ACCOUNT_RATE_LIMITS = {'login_failed': '5/5m/key'}
+  ```
+- **Flow**: allauth sends confirmation email; user clicks link to `email_confirm.html`.
+- **EmailAddress Model**: displays verified status in profile and admin.
+
+---
+
+## 🛡 Admin & Permissions
+- **Admin URL**: `path('admin/', admin.site.urls)` only in root `urls.py`.
+- **Category Model**: added `slug` field; auto-populated in `CategoryAdmin` via `prepopulated_fields`.
+- **Groups & Staff**: assign permissions and create moderator roles.
+
+---
+
+## 🐞 Bugs & Fixes
+A chronological list of major fixes:
+- **Staticfiles manifest** missing entries → switched to `CompressedManifestStaticFilesStorage`.
+- **Template syntax**: closed all `{% if %}` and `{% for %}` tags.
+- **Allauth settings**: migrated deprecated settings to new `ACCOUNT_*` names.
+- **Rate limits**: fixed `ACCOUNT_RATE_LIMITS` format to strings (`'5/5m/key'`).
+- **Duplicate admin namespace**: removed extra `admin/` route in `posts/urls.py`.
+- **CategoryAdmin slug**: added `slug` field to `Category` model and migrations.
+- **Register view**: switched to allauth signup and fixed `authenticate` usage.
+- **Profile email status**: read from `EmailAddress` model and passed `email_verified` context.
+- **Syntax fixes**: added missing commas in context dicts.
+
+---
+
+## 🚧 Future Enhancements
+- Live AJAX voting and comments.
+- Rich text editor integration (CKEditor/TinyMCE).
+- Image uploads with S3 or Cloudinary.
+- WebSockets for real-time notifications.
+- Analytics dashboard for site metrics.
+
+---
+
+## 🤝 Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Fork, branch, commit, PR!
+
+---
+
+## 📄 License
+[MIT License](LICENSE) © 2025 Serious Talk Contributors
+
+---
+
+*Built with ❤️ by the Serious Talk Team*
+
