@@ -66,6 +66,158 @@ Serious Talk is a modern, responsive forum application where users can register,
 
 ---
 
+## 🎮 Full Feature Walkthrough
+
+Below is a step-by-step guide to every user flow and UI component in Serious Talk. For each section, insert your real screenshot in place of the placeholder.
+
+---
+
+### 🔹 1. Global Navigation & Layout
+
+- **Responsive Navbar**  
+  - Brand logo links home  
+  - **Unauthenticated**: Home, Login, Register  
+  - **Authenticated**: Home, New Post, My Profile, Logout  
+- **Footer**  
+  - Copyright, links to About/Contact  
+
+![1. Navbar – Home vs. Authenticated View](docs/images/1_navbar.png)  
+*Figure: Responsive navbar in desktop & mobile view.*
+
+---
+
+### 🔹 2. Homepage & Post Listing
+
+- **Latest Posts** displayed as Bootstrap cards  
+- Card shows title, author (linked to profile), timestamp, vote score  
+- **Voting** controls appear for logged-in users (+1 / −1)  
+- **“No posts”** empty state  
+
+![2. Homepage with post cards](docs/images/2_homepage.png)  
+*Figure: Homepage listing posts.*
+
+---
+
+### 🔹 3. Search & Category Filtering
+
+- **Search bar** in navbar to filter posts by keyword  
+- **Category dropdown** allowing filtering by category  
+
+![3. Search & Categories](docs/images/3_search_category.png)  
+*Figure: Searching “django” or selecting “Python” category.*
+
+---
+
+### 🔹 4. Registration Flow
+
+1. **Sign Up**  
+   - Fields: Username, Email, Password, Confirm Password  
+2. **“Check Your Email”** page after submit  
+3. **Confirmation Email** arrives with link  
+4. **Email Confirmed** landing page  
+
+![4a. Register Form](docs/images/4a_register_form.png)  
+![4b. Email Sent Confirmation](docs/images/4b_email_sent.png)  
+![4c. Email Confirm Success](docs/images/4c_email_confirmed.png)  
+*Figures: Registration ➔ Confirmation prompt ➔ Success.*
+
+---
+
+### 🔹 5. Authentication & Rate-Limiting
+
+- **Log In** page, redirects to `next` URL if provided  
+- **Password Reset**: request, email, reset form, completion  
+- **Rate-limiting**: Blocks after 5 failed attempts/5 min  
+
+![5a. Login Page](docs/images/5a_login.png)  
+![5b. Password Reset](docs/images/5b_password_reset.png)  
+![5c. Rate-Limit Error](docs/images/5c_rate_limit.png)  
+*Figures: Login, password reset flow, rate-limit error message.*
+
+---
+
+### 🔹 6. Post Details & Interactions
+
+- **Detail View**: full post content, author, timestamp  
+- **Comments**: threaded, add/edit/delete own comments  
+- **Voting**: live AJAX updates  
+- **Edit/Delete** buttons for post owner  
+
+![6a. Post Detail](docs/images/6a_post_detail.png)  
+![6b. Comments & Voting](docs/images/6b_comments_votes.png)  
+*Figures: Post detail with comments and vote buttons.*
+
+---
+
+### 🔹 7. Creating & Managing Posts
+
+- **New Post** form: Title, Body, Category, Tags  
+- **Edit Post** with pre-filled form  
+- **Delete Confirmation**  
+
+![7a. New Post Form](docs/images/7a_new_post.png)  
+![7b. Edit Post](docs/images/7b_edit_post.png)  
+*Figures: Create and edit post screens.*
+
+---
+
+### 🔹 8. User Profiles
+
+- **Profile Page** shows:  
+  - Avatar (if implemented), Full Name (or username), Email verification status  
+  - List of user’s posts (linked to detail)  
+- **Edit Profile**: form for First Name & Last Name  
+
+![8a. User Profile](docs/images/8a_profile_view.png)  
+![8b. Edit Profile](docs/images/8b_edit_profile.png)  
+*Figures: Public profile view and edit form.*
+
+---
+
+### 🔹 9. Admin & Moderation
+
+- **Django Admin** (secured at `/admin/`)  
+- **Categories**: add/edit/delete with slug auto-populate  
+- **Custom User Management**: lock, delete accounts  
+- **EmailAddress** admin shows verification status  
+
+![9a. Admin Dashboard](docs/images/9a_admin_dashboard.png)  
+![9b. Custom User Management](docs/images/9b_manage_users.png)  
+*Figures: Standard admin and custom moderation views.*
+
+---
+
+### 🔹 10. Static & Media Handling
+
+- **Whitenoise** for static asset compression & manifest  
+- **Media uploads** saved under `mediafiles/` and served in development  
+
+![10. Static & Media Example](docs/images/10_static_media.png)  
+*Figure: Post with uploaded image (if applicable).*
+
+---
+
+### 🔹 11. Error Pages & Edge Cases
+
+- **Custom 404** and **500** pages match site style  
+- Graceful empty states (no posts, no comments)  
+
+![11a. 404 Page](docs/images/11a_404.png)  
+![11b. Empty State](docs/images/11b_empty_state.png)  
+*Figures: 404 page and an empty posts view.*
+
+---
+
+### 🔹 12. Mobile Responsiveness
+
+- Fully responsive layouts via Bootstrap grid  
+- Collapsible navbar toggler on small screens  
+
+![12. Mobile View](docs/images/12_mobile.png)  
+*Figure: Homepage on mobile with collapsed menu.* 
+
+---
+
 ## 🛠 Tech Stack
 | Component               | Technology                       |
 |-------------------------|----------------------------------|
@@ -220,13 +372,17 @@ A chronological list of major fixes:
 
 ---
 
-## 🤝 Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Fork, branch, commit, PR!
+## Credit
+- In this section, we provide acknowledgements for resources and inspiration.
+
+### Content
+
+### Media
 
 ---
 
-## 📄 License
-[MIT License](LICENSE) © 2025 Serious Talk Contributors
+## Acknowledgements
+
 
 ---
 
