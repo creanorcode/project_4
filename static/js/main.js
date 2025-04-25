@@ -8,38 +8,30 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', async (e) => {
             e.preventDefault();
             // Get post ID and vote type from data attributes
-            const postId = this.dataset.postId;
-            const voteType = this.dataset.voteType;
+            const postId = button.dataset.postId;
+            const voteType = button.dataset.voteType;
             // Select the element displaying the vote score
             const voteScoreElement = document.getElementById(`vote-score-${postId}`);
             // Display a loading message while processing the vote
             voteScoreElement.textContent = 'Loading...';
 
             // Send the vote to the server using fetch API
-            fetch(`/post/${postId}/vote/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-                body: JSON.stringify({ vote: voteType }),
-            })
-            .then(response => {
-                // Throw an error if the response is not OK
-                if (!response.ok) {
-                    throw new Error("An error occurred during voting");
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Update the vote score with the returned data
+            try {
+                const res = await fetch(`/post/${postId}/vote/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    },
+                    body: JSON.stringify({ vote: voteType }),
+                });
+                if (!res.ok) throw new Error('Vote failed');
+                const data = await res.json();
                 voteScoreElement.textContent = data.vote_score;
-            })
-            .catch(error => {
-                // Display an error message and log the error
+            }   catch (err) {
                 voteScoreElement.textContent = 'Error during vote';
-                console.error(error);
-            })
+                console.error(err);
+            }
         })
     })
 })
@@ -50,15 +42,12 @@ function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         // Split document.cookie string into individual cookies
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Check if the cookie string starts with the name we´re looking for
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+        document.cookie.split(';').forEach(c => {
+            c = c.trim();
+            if (c.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(c.slice(name.length + 1));
             }
-        }
+        });
     }
     return cookieValue;
 }
