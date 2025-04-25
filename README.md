@@ -275,6 +275,12 @@ Visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
+## Testing
+
+### Validator Testing
+
+---
+
 ## ☁️ Deployment
 
 ### Heroku
@@ -383,6 +389,10 @@ A chronological list of major fixes:
 
 ## Acknowledgements
 
+
+---
+
+## This README.md file is not yet complete and is missing important parts that are not yet filled in.
 
 ---
 
