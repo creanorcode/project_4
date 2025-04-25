@@ -392,7 +392,7 @@ A chronological list of major fixes:
 
 ---
 
-## This README.md file is not yet complete and is missing important parts that are not yet filled in.
+## This README.md file is not yet complete and is missing important parts that are not yet filled in. The parts testing and credit is not yet filled in. The screensshots is not showing yet.
 
 ---
 
