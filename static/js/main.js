@@ -5,23 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add click event listeners to each vote button
     voteButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
             // Get post ID and vote type from data attributes
             const postId = this.dataset.postId;
             const voteType = this.dataset.voteType;
             // Select the element displaying the vote score
-            const voteScoreElement = document.getElementById('vote-score-${postId}');
+            const voteScoreElement = document.getElementById(`vote-score-${postId}`);
             // Display a loading message while processing the vote
             voteScoreElement.textContent = 'Loading...';
 
             // Send the vote to the server using fetch API
-            fetch('/post/${postId}/vote/', {
+            fetch(`/post/${postId}/vote/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
+                    'X-CSRFToken': getCookie('csrftoken'),
                 },
-                body: JSON.stringify({ vote: voteType })
+                body: JSON.stringify({ vote: voteType }),
             })
             .then(response => {
                 // Throw an error if the response is not OK
